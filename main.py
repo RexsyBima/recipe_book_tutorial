@@ -34,10 +34,15 @@ if __name__ == "__main__":
     # alur jalan kodenya -> hanya bisa diimplmentasikan didalam functional programming/oop programming
     startup("Bimbim")
     recipes = []
+    # Create
     while True:
         food_name = input_food_name()
-        food_ingredients = input_ingredients()
-        cooking_steps = input_cooking_steps()
+        food_ingredients = (
+            input_ingredients()
+        )  # gimana caranya masukin ingredients ini kedalam db (one to many relationship)
+        cooking_steps = (
+            input_cooking_steps()
+        )  # gimana caranya masukin cooking steps ini kedalam db (one to many relationship)
         recipe = {
             "food_name": food_name,
             "ingredients": food_ingredients,
