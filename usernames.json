@@ -1,0 +1,27 @@
+{
+    "Jainudin": {
+        "password": "12345",
+        "total_uang": 0,
+        "username": "Jainudin"
+    },
+    "kakamelon": {
+        "password": "12345",
+        "total_uang": 0,
+        "username": "kakamelon"
+    },
+    "kokomelon": {
+        "password": "12345",
+        "total_uang": 0,
+        "username": "kokomelon"
+    },
+    "RereBim": {
+        "password": "12345",
+        "total_uang": 0,
+        "username": "RereBim"
+    },
+    "user1": {
+        "password": "pass1",
+        "total_uang": 1000,
+        "username": "user1"
+    }
+}
