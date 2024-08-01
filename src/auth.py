@@ -1,26 +1,29 @@
-
 # sample = {'user1': {'username': 'user1', 'password': 'pass1', 'total_uang': 1000}}
+
 
 def register(datas):
     username = input("Enter username: ")
     password1 = input("Enter password: ")
-    password2 = input("Confirm password: ")  # konfirmasi / validasi jika password 1 dan 2 sama
+    password2 = input(
+        "Confirm password: "
+    )  # konfirmasi / validasi jika password 1 dan 2 sama
     if username not in datas and password1 == password2:
-        datas[username] = {'username': username, 'password': password1, 'total_uang': 0}
+        datas[username] = {"username": username, "password": password1, "recipes": []}
         return datas
     elif username in datas:
-        raise ValueError('Username already exists')
+        raise ValueError("Username already exists")
     elif password1 != password2:
-        raise ValueError('Password is not same')
-    
+        raise ValueError("Password is not same")
+
+
 def login(datas):
-    username = input("Enter username: ")
-    password = input("Enter password: ")
-    if username in datas and datas[username]['password'] == password:
-        print('Login success')
+    username = "GordonRamsay"  # input("Enter username: ")
+    password = "hellkitchen"  # input("Enter password: ")
+    if username in datas and datas[username]["password"] == password:
+        print("Login success")
         return datas[username]
     else:
-        raise ValueError('Login failed, username or password is incorrect')
+        raise ValueError("Login failed, username or password is incorrect")
 
 
 """

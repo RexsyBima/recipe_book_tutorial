@@ -1,27 +1,53 @@
 {
-    "Jainudin": {
-        "password": "12345",
-        "total_uang": 0,
-        "username": "Jainudin"
+    "GordonRamsay": {
+        "password": "hellkitchen",
+        "recipes": [
+            {
+                "descriptions": "Fried rice is a dish of cooked rice that has been stir-fried in a wok or a frying pan and is usually mixed with other ingredients such as eggs, vegetables, seafood, or meat. ",
+                "food_name": "Fried Rice",
+                "ingredients": [
+                    "\u00bd large shallot",
+                    "2 cloves garlic",
+                    "\u00bd thai bird chile",
+                    "4 garlic chive blossoms",
+                    "2 large eggs",
+                    "\u00bd tsp fish sauce",
+                    "1 tsp sambal oelek, or more if you like the heat",
+                    "\u00bd tsp shrimp paste",
+                    "2 tsps oyster sauce",
+                    "1 tsp sweet soy sauce ",
+                    "1 tbsp light soy sauce",
+                    "2 cups cold rice",
+                    "Salt, as needed",
+                    "Peanut oil, as needed",
+                    "Cilantro leaves, for garnish",
+                    "1 lime, for serving",
+                    "Carrot Daikon Pickles, for serving"
+                ],
+                "instructions": [
+                    "Set out all equipment, tableware, and ingredients. Prepare Carrot Daikon Pickles. Rinse the chile, chive blossoms, cilantro, and lime.",
+                    "Peel the shallot and garlic. Cut the shallot half in half, then slice \u00bc-inch thick pieces. Thinly slice the garlic. De-stem, de-seed, and thinly slice the chile. Quarter the lime. Roughly chop the cilantro. Cut the chive blossoms into 2-inch lengths. ",
+                    "Whisk the eggs with \u00bd tsp fish sauce and a pinch of salt.",
+                    "Mix the oyster sauce, light soy sauce, and sweet soy sauce together. ",
+                    "Break the rice into individual grains with your fingers. ",
+                    "Preheat the wok over high heat until smoking, swirl in a small amount of oil to coat, and pour out excess in the \u201cgrease-gutter,\u201d which can be placed at the center-back region of the stove.",
+                    "When beginning to smoke again, pour in 3 tbsp peanut oil, and swirl to heat.",
+                    "Add the shallots and a pinch of salt, then cook until beginning to brown.",
+                    "When the shallots have softened and begun to brown, add the garlic slices and chile, and cook until beginning to brown. Keep them moving constantly. Move to the next step if the shallots are getting too dark.  ",
+                    "Stir in the sambal oelek and shrimp paste until the color changes and the splattering slows down. The oil will definitely splatter, so keep your face back. ",
+                    "Pour in the eggs, and stir vigorously until they have absorbed the aromatics and oil. Add the chive blossoms, and keep stirring. ",
+                    "When the eggs have fully coagulated, add the rice, breaking it up if needed, and stir-fry until very hot. If the rice sticks to the sides of the wok, add a little more oil, and make sure the heat is as high as possible. The rice should sizzle and crackle when hot enough. ",
+                    "Drizzle the sauce mixture down the sides of the wok, and immediately toss to coat the rice. Cook until the sauce begins lightly caramelizing on the surface of the rice and the mixture does not look wet. ",
+                    "Taste, adjust salt, toss, and plate. ",
+                    "Sprinkle over the cilantro, and serve with lime and Carrot Daikon Pickles on the side. "
+                ]
+            }
+        ],
+        "username": "GordonRamsay"
     },
-    "kakamelon": {
-        "password": "12345",
-        "total_uang": 0,
-        "username": "kakamelon"
-    },
-    "kokomelon": {
-        "password": "12345",
-        "total_uang": 0,
-        "username": "kokomelon"
-    },
-    "RereBim": {
-        "password": "12345",
-        "total_uang": 0,
-        "username": "RereBim"
-    },
-    "user1": {
-        "password": "pass1",
-        "total_uang": 1000,
-        "username": "user1"
+    "NickDiGiovanni": {
+        "password": "NickDiGiovanni",
+        "recipes": [],
+        "username": "NickDiGiovanni"
     }
 }
