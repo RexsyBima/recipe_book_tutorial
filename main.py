@@ -39,7 +39,7 @@ def input_instructions():
     return cooking_steps
 
 
-def add_food(user, usernames):
+def add_food(user, database):
     name = input_food_name()
     descriptions = input_descriptions()
     ingredients = input_ingredients()
@@ -51,7 +51,7 @@ def add_food(user, usernames):
         "instructions": instructions,
     }
     user["recipes"].append(food)
-    update_json(usernames, user)
+    update_json(database, user, filename="database.json")
 
 
 def show_user_food(
@@ -61,6 +61,11 @@ def show_user_food(
     user_input = (
         int(input("Please input your choice to see the detail of the recipe : ")) - 1
     )
+    print(user_input, len(user["recipes"]))
+    # if user_input < 0 or user_input >= len(user["recipes"]):
+    #    raise ValueError("Invalid input. Please enter a correct food number.")
+    if user_input not in list(range(len(user["recipes"]))):
+        raise ValueError("Invalid input. Please enter a correct food number.")
     food = user["recipes"][user_input]
     print(f"FOOD NAME : {food['food_name']}")
     print(f"FOOD DESCRIPTIONS : \n\n {food['descriptions']}")
@@ -72,7 +77,7 @@ def show_user_food(
         print(f"{i}. {f}")
 
 
-def delete_food(user, usernames):
+def delete_food(user, database):
     for i, food in enumerate(user["recipes"], start=1):
         print(i, food["food_name"])
     food_to_delete = int(input("Please enter the food you want to delete : ")) - 1
@@ -87,7 +92,7 @@ def delete_food(user, usernames):
     )
     if sure:
         user["recipes"].pop(food_to_delete)
-    update_json(usernames, user)
+    update_json(database, user, filename="database.json")
 
 
 def show_feature_menu():
@@ -96,7 +101,8 @@ def show_feature_menu():
     print("2. Edit food")
     print("3. Show all current user foods")
     print("4. Delete food")
-    print("5. exit")
+    print("5. get all username food recipes")
+    print("6. exit")
 
 
 def edit_food_pt1(user):
@@ -129,7 +135,7 @@ def edit_food_pt2(food_index_to_edit: int, sure: bool, user):
         return edit_input
 
 
-def edit_food_pt3(food_index_to_edit: int, edit_input: int, user, usernames):
+def edit_food_pt3(food_index_to_edit: int, edit_input: int, user, database):
     food = user["recipes"][food_index_to_edit]
     match edit_input:
         case 1:
@@ -156,7 +162,7 @@ def edit_food_pt3(food_index_to_edit: int, edit_input: int, user, usernames):
             )
         case _:
             raise ValueError("Invalid input. Please enter a number between 1 and 4.")
-    update_json(usernames, user)
+    update_json(database, user, filename="database.json")
 
 
 def get_user_input():
@@ -166,47 +172,68 @@ def get_user_input():
         print("Invalid input. Please enter a number between 1 and 5.")
         exit()
 
-    if user_input not in [1, 2, 3, 4, 5]:
+    if user_input not in [1, 2, 3, 4, 5, 6]:
         raise ValueError("Invalid input. Please enter a number between 1 and 5.")
     return user_input
 
 
+def get_all_user_foods(
+    database, username
+):  # TODO FIX THIS, so it be able to get all user food in detail
+    recipes: list[dict] = []
+    for d in database:
+        recipes.append({database[d]["username"]: database[d]["recipes"]})
+    for user in recipes:
+        for k in user:
+            if k == username:
+                print(k, "(You)")
+            else:
+                print(k)
+            food = user[k]
+            for i, f in enumerate(food, start=1):
+                print(f"{i}.", f["food_name"])
+
+
 if __name__ == "__main__":
     # alur jalan kodenya -> hanya bisa diimplmentasikan didalam functional programming/oop programming
-    usernames = read_json("usernames.json")
+    database = read_json("database.json")
     user_input = input("Do you want to login or register? (login/register): ")
 
     if user_input == "login":
-        user = login(usernames)
+        user = login(database)
     elif user_input == "register":
-        usernames = register(usernames)
-        save_json(usernames, "usernames.json")
+        database = register(database)
+        save_json(database, "database.json")
         exit("User created successfully!")
     else:
         raise ValueError("Invalid input. Please enter 'login' or 'register'.")
 
     startup(user["username"])
-    show_feature_menu()
-    user_input = get_user_input()
+    while True:
+        show_feature_menu()
+        user_input = get_user_input()
 
-    # Create
-    match user_input:
-        case 1:  # Add food
-            add_food(user, usernames)
-        case 2:
-            food_index_to_edit, sure = edit_food_pt1(user)
-            edit_input = edit_food_pt2(food_index_to_edit, sure, user)
-            edit_food_pt3(food_index_to_edit, edit_input, user, usernames)
-        case 3:  # SHow all user foods
-            show_user_food(user)
-        case 4:  # Delete user food
-            delete_food(user, usernames)
-        case _:
-            print("exit")
-            exit()
+        # Create
+        match user_input:
+            case 1:  # Add food
+                add_food(user, database)
+            case 2:
+                food_index_to_edit, sure = edit_food_pt1(user)
+                edit_input = edit_food_pt2(food_index_to_edit, sure, user)
+                edit_food_pt3(food_index_to_edit, edit_input, user, database)
+            case 3:  # SHow all user foods
+                show_user_food(user)
+            case 4:  # Delete user food
+                delete_food(user, database)
+            case 5:  # get all user in db foods
+                get_all_user_foods(database, user["username"])
+            case 6:
+                print("exitting program, saving...")
+                save_json(database, "database.json")
+                exit()
 
 """ 
 NOTE
-1.  # Edit Food Nambahin data permakanan, nambahin step cooking (ingredients), ngurangin step cooking/ menghapus bbrp step cooking, dst nya # if user input when editt  is empty, delete that step
+1.  # Edit Food Nambahin data permakanan, nbahin step cooking (ingredients), ngurangin step cooking/ menghapus bbrp step cooking, dst nya # if user input when editt  is empty, delete that step
 2. If user input is empty during description for an ex, cancel editing
 """

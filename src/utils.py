@@ -7,11 +7,11 @@ def save_json(data, filename):
         json.dump(data, f)
 
 
-def update_json(usernames, user):
+def update_json(usernames, user, filename):
     for u in usernames:
         if u == user["username"]:
             usernames[u]["recipes"] = user["recipes"]
-        save_json(usernames, "usernames.json")
+        save_json(usernames, filename)
 
 
 def read_json(filename):

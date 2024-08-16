@@ -17,8 +17,8 @@ def register(datas):
 
 
 def login(datas):
-    username = "GordonRamsay"  # input("Enter username: ")
-    password = "hellkitchen"  # input("Enter password: ")
+    username = input("Enter username: ")
+    password = input("Enter password: ")
     if username in datas and datas[username]["password"] == password:
         print("Login success")
         return datas[username]
