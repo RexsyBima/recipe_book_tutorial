@@ -57,7 +57,9 @@ def add_food(user, database):
 def show_user_food(
     user,
 ):
-    print_enumerate(user["recipes"], key="food_name", title="USER FOOD LIST")
+    print_enumerate(
+        user["recipes"], key="food_name", title=f"{user['username'].upper()} FOOD LIST"
+    )
     user_input = (
         int(input("Please input your choice to see the detail of the recipe : ")) - 1
     )
@@ -102,11 +104,14 @@ def show_feature_menu():
     print("3. Show all current user foods")
     print("4. Delete food")
     print("5. get all username food recipes")
-    print("6. exit")
+    print("6. Search chef recipe")
+    print("7. exit")
 
 
 def edit_food_pt1(user):
-    print_enumerate(user["recipes"], key="food_name", title="USER FOOD LIST")
+    print_enumerate(
+        user["recipes"], key="food_name", title=f"{user['username'].upper()} FOOD LIST"
+    )
     food_index_to_edit = (
         int(input("Please enter the food you want to edit")) - 1
     )  # Self explanatory
@@ -172,7 +177,7 @@ def get_user_input():
         print("Invalid input. Please enter a number between 1 and 5.")
         exit()
 
-    if user_input not in [1, 2, 3, 4, 5, 6]:
+    if user_input not in [1, 2, 3, 4, 5, 6, 7]:
         raise ValueError("Invalid input. Please enter a number between 1 and 5.")
     return user_input
 
@@ -192,6 +197,15 @@ def get_all_user_foods(
             food = user[k]
             for i, f in enumerate(food, start=1):
                 print(f"{i}.", f["food_name"])
+
+
+def search_chef(database: dict):
+    chef_input = input("Please enter username : ")
+    for d in database:
+        if d.lower() == chef_input.lower():
+            chef_data = database[d]
+            return chef_data
+    raise ValueError("Chef not found")
 
 
 if __name__ == "__main__":
@@ -228,9 +242,13 @@ if __name__ == "__main__":
             case 5:  # get all user in db foods
                 get_all_user_foods(database, user["username"])
             case 6:
+                chef_data = search_chef(database)
+                show_user_food(chef_data)
+            case 7:
                 print("exitting program, saving...")
                 save_json(database, "database.json")
                 exit()
+
 
 """ 
 NOTE
